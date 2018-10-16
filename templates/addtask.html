@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>AddTask</title>
+
+</head>
+<body>
+  <p>
+<a href="http://localhost:8000/user/" ><b> Go  back to task manager</a></b>
+</p>
+
+    <form action="http://localhost:8000/gettask/" method="POST">
+        {% csrf_token %}
+<p> 
+ Task Title <input type="text" name="title" size="50"   placeholder="set a title"  required>
+</p>
+
+
+<p> 
+Priority: <select id="priority_id" name="priority">       
+  <option value="normal">normal</option>
+  <option value="high">high</option>
+<option value="low">low</option>
+  <option value="urgent">urgent</option>
+</select>
+</p>
+
+<p> Task description:</p>
+<textarea name="describe" cols="80" rows="12" required></textarea>
+ <p>     
+<input type="submit" value="Submit"  style="font-size : 20px;border-style:none;background-color:lightblue"/>
+</p>
+
+    </form>
+
+</body>
+</html>
+

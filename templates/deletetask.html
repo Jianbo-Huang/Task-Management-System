@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>deleteTask</title>
+
+</head>
+<body>
+  <p>
+<a href="http://localhost:8000/user/" ><b> Go  back to task manager</a></b>
+</p>
+
+    <form action="http://localhost:8000/getdelete/" method="POST">
+        {% csrf_token %}
+<p> 
+ <b>Task ID to be deleted: </b><input type="text" name="taskid" size="30"   placeholder="Input the id of to be deleted task"  required>
+</p>
+
+ <p>     
+<input type="submit" value="Submit"  style="font-size : 20px;border-style:none;background-color:lightblue"/>
+</p>
+
+    </form>
+
+</body>
+</html>
+

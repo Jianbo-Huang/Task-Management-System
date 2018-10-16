@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>AddTask</title>
+
+</head>
+<body>
+<p>
+<a href="http://localhost:8000/user/" ><b> Go  back to task manager</a></b>
+</p>
+   
+<h2>Close a task</h2>
+<form action="http://localhost:8000/resolution" method="POST">
+   {% csrf_token %}
+   <p>
+   Task ID to be closed: <input type="text" name="taskid"  required>
+   </p>
+   <p>Resulation: <input type="text" name="resolution"  size="70" required></p>
+   <p><input type="submit" value="Submit" /></p>
+</body>
+</html>

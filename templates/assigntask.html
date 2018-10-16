@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>AssignTask</title>
+
+</head>
+<body>
+  <p>
+<a href="http://localhost:8000/user/" ><b> Go  back to task manager</a></b>
+</p>
+
+    <form action="http://localhost:8000/getassigned/" method="POST">
+        {% csrf_token %}
+<p> 
+ <b>Task ID to be assigned: </b><input type="text" name="taskid" size="30"   placeholder="Input the id of to be assigned  task"  required>
+</p>
+<p> 
+ <b>User to be assigned to: </b><input type="text" name="newowner" size="30"   placeholder="Input the owner for the task to be assigned to"  required>
+</p>
+ <p>     
+<input type="submit" value="Submit"  style="font-size : 20px;border-style:none;background-color:lightblue"/>
+</p>
+
+    </form>
+
+</body>
+</html>
+
