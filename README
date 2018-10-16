@@ -1,0 +1,145 @@
+A Python-based task manage tool
+Description:
+   General-purpose task management system, it has the following functionalities:
+    * Add a new task
+   * Edit user's own tasks, to be able to edit a task, the user must own it
+   * Assign a task: change the task owner, you mush be a super user to assign a task
+   * Delete an unwanted/duplicated task: the user must own the task to be deleted
+   *  Close a task: once a task has been completed, a user can close it, again the user must own the task
+       to be closed
+   * Show all tasks (apart from deleted tasks)
+   * Show all open tasks: present information for all tasks with status "to-do" or "in progress"
+   * Show my tasks (apart from deleted tasks): show all tasks owned by the user
+   * Show all open tasks: present information for all tasks with status "to-do" or "in progress"
+   * Show my open tasks : show all tasks owned by the user, and is still open
+   * Show closed tasks: show all tasks that are closed
+   * Show my closed tasks: show all closed tasks owned by the user
+
+Task definition
+
+  A task is defined by the following entries:
+    id : unique task id for searching purposes. The id will not changed even if the task is deleted, so that
+        all tasks will have a unique id
+    title: a task must  have a title to describe what is the task trying to do
+   owner: who owns the task
+   description: more detailed description about the task
+   priority: determines how urgent is the task
+   creation time: when was the task created
+   last modification time: when was the task modified
+   resolution: the resolution when the task is closed
+   status: current status of the task
+-------------------
+Requirements
+------------------
+
+* Python 3.4+ (tested with Python 3.5.2).
+* Django 2.0 and other dependencies declared
+  in the ``requirements.txt`` file (use virtual environments!).
+* A Django compatible database like PostgreSQL (by default uses
+  the Python's built-in SQLite database for development purpose).
+
+--------------------
+Install and Run
+--------------------
+
+Install dependencies with::
+
+    $ pip install -r requirements.txt
+   
+Create the database with::
+
+    $ python3 manage.py makemigrations
+    $ python3 manage.py makemigrations  tasks
+    $ python3 manage.py migrate
+
+To create an admin user::
+
+    $ python3 manage.py createsuperuser
+
+Then run in development mode with::
+
+    $ python3 manage.py runserver
+
+Or use the script to startup in the same mode::
+
+    $ ./start.sh
+
+Run example:
+     Assume that we have created the following users:
+     huang (super user)
+     david (normal user)
+     john (normal user)
+     samir (normal user)
+
+Once started the server (assume here is a localhost:8000)  , a user should first login by entering
+http://localhost:8000/login  (see login.png)
+
+1. Login to the system
+
+login as huang (see huang.png)
+Once login completed, you will see the task manager option page (see taskmanager.png), where you will
+see a list of options
+
+2. Create tasks
+  click on "Add  a Task", and add a new task (see addtask1.png)
+ Type in the contents, click 'submit', you will see a confirmation message (see addtask2.png)
+
+   Continue the steps for another task submission.
+
+3. Show tasks
+   click 'Show All Tasks' in 'localhost:8000/user/' window, you will see the list of tasks
+   (see tasks1.png)
+4. Assign tasks
+   Suppose I want to assign one of the tasks to david, then click 'Assign a Task', you will come up
+   the following UI (see assign1.png). If you assign a wrong task id, you will be told by
+   a response message(see assign2.png)
+  Once assigned to the correct id, you will see a confirmation (see assign3.png)
+
+  Note : you cannot assign the task to the owner which already own the task.
+  You can not assign a closed task. These will be checked in the code, and corresponding
+  message will be given.
+
+  Once task is assigned, list the task will see the owner has been changed (see tasks2.png)
+
+  5. Login to another user
+
+Now lets login to another user john, and add tasks (see login2.png),
+add a task by john (see newtask_john.png)
+
+6. Show my own tasks
+ Once login as john, and submitted a task, click 'Show Tasks of My Own', you will see the newly-created task
+ (see john-task1.png)
+
+ 7. Edit a task
+
+ If john wants to edit the task, change priority to 'normal', and add more contents to description,
+ he can press 'Edit a Task', suply the task id, and make the change. If john inputs an incorrect task id,
+ it will be told by http responce message (see john-edit1.png).
+
+john can change the task title and/or priority and/or the description (see john-edit2.png). Now press
+'Show  Tasks of My Own', the changes will be confirmed (see john-edit3.png).
+Press 'Show All Tasks' will list all the created tasks (see john-edit4.png)
+
+8. Close a task
+
+A user can close his own tasks if it is completed. A resolution needs to be provided.
+If john tries to close other people's task, it will be prevented (see john-close1.png, john-close2.png)
+Once the task id is inputed correctly, and resolution provided, the task status will ne changed, and
+resolution be recorded (see john-close3.png, john-close4.png)
+
+Press 'Show All Tasks' will confirm the change (see john-show1.png)
+Now, press 'Show All Open Tasks' will not include task 3 (see john-show2.png)
+
+9. Restart the server
+
+Restart the server will automically load the submitted tasks. We restart the server, and
+login as samir. (see samir-login.png,samir-list1.png)
+
+Now samir submitted a new task, and view the list (see samir-submit1.png, samir-list2.png)
+
+
+   
+
+
+
+
